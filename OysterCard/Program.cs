@@ -16,22 +16,28 @@ namespace OysterCard
 
         static void Main(string[] args)
         {
-            var filePath = args[0];
-            var response = new List<string>();
-            var card = new Card(new Wallet());
-            foreach (string line in File.ReadLines(filePath))
+            try
             {
-                var arguments = new List<string>(line.Split(" "));
-                string command = arguments[0];
-                var handler = GetHandler(command);
-                var result = handler.Execute(card, arguments.Skip(1).ToArray());
-                if (result != string.Empty)
+                var filePath = args[0];
+                var response = new List<string>();
+                var card = new Card(new Wallet());
+                foreach (string line in File.ReadLines(filePath))
                 {
-                    response.Add(result.ToString());
+                    var arguments = new List<string>(line.Split(" "));
+                    string command = arguments[0];
+                    var handler = GetHandler(command);
+                    var result = handler.Execute(card, arguments.Skip(1).ToArray());
+                    if (result != string.Empty)
+                    {
+                        response.Add(result.ToString());
+                    }
                 }
-            }
 
-            response.ForEach(Console.WriteLine);
+                response.ForEach(Console.WriteLine);
+            }
+            catch(Exception e) {
+                Console.WriteLine(e.Message);
+            }
         }
 
         private static ICommandHandler GetHandler(string command)

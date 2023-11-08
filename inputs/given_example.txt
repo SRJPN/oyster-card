@@ -1,0 +1,7 @@
+RECHARGE 30
+ENTRY TUBE Holborn 
+EXIT EarlsCourt
+ENTRY BUS EarlsCourt
+ENTRY TUBE EarlsCourt
+EXIT Hammersmith
+BALANCE

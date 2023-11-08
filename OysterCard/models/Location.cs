@@ -5,7 +5,7 @@ public class Location
     public static readonly IList<Location> LOCATIONS = new List<Location>() {
         new("Holborn", Zone.ONE),
         new("Aldgate", Zone.ONE),
-        new("Earl’s Court", Zone.ONE),
+        new("EarlsCourt", Zone.ONE),
         new("Hammersmith", Zone.TWO),
         new("Arsenal", Zone.TWO),
         new("Wimbledon", Zone.THREE),
@@ -14,7 +14,7 @@ public class Location
     private readonly Zone zone;
     public Location(string name, Zone zone)
     {
-        this.Name = name;
+        Name = name;
         this.zone = zone;
     }
 

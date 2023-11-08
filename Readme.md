@@ -19,7 +19,7 @@ You are required to model the following fare card system which is a limited vers
 | --- | --- |
 | Holborn | 1 |
 | Aldgate | 1 |
-| Earl’s Court | 1, 2 |
+| EarlsCourt | 1, 2 |
 | Hammersmith | 2 |
 | Arsenal | 2 |
 | Wimbledon | 3 |
