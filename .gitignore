@@ -7,3 +7,4 @@ tools/
 .fake
 */coverage.cobertura.xml
 *.zip
+.DS_store
