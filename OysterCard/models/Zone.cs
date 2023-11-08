@@ -21,6 +21,6 @@ public static class ZoneMethods
             return (decimal)3.00;
         else if (z1 != z2 && z1 != Zone.Zone_1 && z2 != Zone.Zone_1)
             return (decimal)2.25;
-        return 0;
+        return (decimal)3.20;
     }
 }

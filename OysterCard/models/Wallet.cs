@@ -4,7 +4,7 @@ namespace OysterCard.models
     {
         private decimal amount = 0;
 
-        public void RechargeWallet(decimal amount) {
+        public void Recharge(decimal amount) {
             this.amount += amount;
         }
 

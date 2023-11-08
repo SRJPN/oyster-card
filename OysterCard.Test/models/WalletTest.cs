@@ -8,11 +8,11 @@ namespace OysterCard.Test.models
         public void RechargeWallet_should_add_amount_to_wallet()
         {
             var wallet = new Wallet();
-            wallet.RechargeWallet(10);
+            wallet.Recharge(10);
             
             Assert.Equal(10, wallet.Balance);
 
-            wallet.RechargeWallet(15);
+            wallet.Recharge(15);
             
             Assert.Equal(25, wallet.Balance);
         }
