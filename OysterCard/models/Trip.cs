@@ -9,7 +9,8 @@ namespace OysterCard.models
             this.source = source;
         }
 
-        public void SetDestination(Location destination) {
+        public void SetDestination(Location destination)
+        {
             this.destination = destination;
         }
 

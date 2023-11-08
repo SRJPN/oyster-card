@@ -3,16 +3,14 @@ namespace OysterCard.models
     public class Location
     {
         public static readonly IList<Location> LOCATIONS = new List<Location>() {
-            new("Holborn", Zone.Zone_1),
-            new("Aldgate", Zone.Zone_1),
-            new("Earl’s Court", Zone.Zone_1),
-            new("Hammersmith", Zone.Zone_2),
-            new("Arsenal", Zone.Zone_2),
-            new("Wimbledon", Zone.Zone_3),
+            new("Holborn", Zone.ONE),
+            new("Aldgate", Zone.ONE),
+            new("Earl’s Court", Zone.ONE),
+            new("Hammersmith", Zone.TWO),
+            new("Arsenal", Zone.TWO),
+            new("Wimbledon", Zone.THREE),
         };
         public string Name { get; }
-
-        const decimal MAX_FARE = (decimal)3.20;
         private readonly Zone zone;
         public Location(string name, Zone zone)
         {
@@ -23,7 +21,7 @@ namespace OysterCard.models
         public decimal CalculateFare(Location? destination)
         {
             if (destination == null)
-                return MAX_FARE;
+                return Constants.MAX_FARE;
             return zone.CalculateFare(destination.zone);
         }
     }

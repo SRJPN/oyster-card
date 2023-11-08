@@ -2,9 +2,9 @@ namespace OysterCard.models;
 
 public enum Zone
 {
-    Zone_1,
-    Zone_2,
-    Zone_3
+    ONE,
+    TWO,
+    THREE
 }
 
 
@@ -13,14 +13,16 @@ public static class ZoneMethods
 
     public static decimal CalculateFare(this Zone z1, Zone z2)
     {
-        if (z1 == z2 && z1 == Zone.Zone_1)
-            return (decimal)2.50;
-        else if (z1 == z2 && z1 > Zone.Zone_1)
-            return (decimal)2.00;
-        else if (z1 != z2 && (z1 == Zone.Zone_1 || z2 == Zone.Zone_1))
-            return (decimal)3.00;
-        else if (z1 != z2 && z1 != Zone.Zone_1 && z2 != Zone.Zone_1)
-            return (decimal)2.25;
-        return (decimal)3.20;
+        if (z1 - z2 == 0)
+            if (z1 == Zone.ONE)
+                return Constants.INTRA_ZONE_FARE_WITHIN_ZONE_ONE;
+            else
+                return Constants.INTRA_ZONE_FARE_OUTSIDE_ZONE_ONE;
+        if (Math.Abs(z1 - z2) == 1)
+            if (z1 == Zone.ONE || z2 == Zone.ONE)
+                return Constants.INTER_ZONE_FARE_THROUGH_ZONE_ONE;
+            else
+                return Constants.INTER_ZONE_FARE_OUTSIDE_ZONE_ONE;
+        return Constants.INTER_ZONE_FARE_MORE_THAN_TWO_ZONES;
     }
 }

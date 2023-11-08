@@ -3,7 +3,6 @@ namespace OysterCard.models
 {
     public class Card
     {
-        const decimal MAX_FARE = (decimal)3.20;
         private readonly Wallet wallet;
         private readonly IList<Trip> trips = new List<Trip>();
 
@@ -12,15 +11,17 @@ namespace OysterCard.models
             this.wallet = wallet;
         }
 
-        public void StartTrip(Location location) {
-            wallet.UseWallet(MAX_FARE);
+        public void StartTrip(Location location)
+        {
+            wallet.UseWallet(Constants.MAX_FARE);
             trips.Add(new Trip(location));
         }
 
-        public void EndLastTrip(Location destination) {
+        public void EndLastTrip(Location destination)
+        {
             var lastTrip = trips.Last();
             lastTrip.SetDestination(destination);
-            wallet.Recharge(MAX_FARE);
+            wallet.Recharge(Constants.MAX_FARE);
             wallet.UseWallet(lastTrip.CalculateFare());
         }
 

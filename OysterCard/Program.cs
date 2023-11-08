@@ -7,7 +7,7 @@ namespace OysterCard
     [ExcludeFromCodeCoverage]
     class Program
     {
-         static readonly IDictionary<string, ICommandHandler> handlers = new Dictionary<string, ICommandHandler> {
+        static readonly IDictionary<string, ICommandHandler> handlers = new Dictionary<string, ICommandHandler> {
             {"RECHARGE", new RechargeHandler()},
             {"ENTRY", new StationEntryHandler()},
             {"EXIT", new StationExitHandler()},

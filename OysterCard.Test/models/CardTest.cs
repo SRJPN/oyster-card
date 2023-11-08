@@ -35,7 +35,7 @@ namespace OysterCard.Test.models
             var card = new Card(wallet);
             Assert.Equal((decimal)30.0, card.GetBalance());
 
-            card.StartTrip(new Location("some-location", Zone.Zone_1));
+            card.StartTrip(new Location("some-location", Zone.ONE));
 
             Assert.Equal((decimal)26.8, card.GetBalance());
         }
@@ -49,8 +49,8 @@ namespace OysterCard.Test.models
             var card = new Card(wallet);
             Assert.Equal((decimal)30.0, card.GetBalance());
 
-            card.StartTrip(new Location("some-location", Zone.Zone_1));
-            card.EndLastTrip(new Location("some-destination-location", Zone.Zone_1));
+            card.StartTrip(new Location("some-location", Zone.ONE));
+            card.EndLastTrip(new Location("some-destination-location", Zone.ONE));
 
             Assert.Equal((decimal)27.5, card.GetBalance());
         }

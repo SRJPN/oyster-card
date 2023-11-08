@@ -7,7 +7,7 @@ namespace OysterCard.Test.models
         [Fact]
         public void CalculateFare_should_return_MAX_FARE_on_destination_null()
         {
-            var location = new Location("some-location", Zone.Zone_1);
+            var location = new Location("some-location", Zone.ONE);
             Assert.Equal((decimal)3.20, location.CalculateFare(null));
         }
     }
