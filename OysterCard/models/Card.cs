@@ -11,10 +11,10 @@ public class Card
         this.wallet = wallet;
     }
 
-    public void StartTrip(Location location)
+    public void StartTrip(TransportMode transportMode, Location location)
     {
         wallet.UseWallet(Constants.MAX_FARE);
-        trips.Add(new Trip(location));
+        trips.Add(new Trip(transportMode, location));
     }
 
     public void EndLastTrip(Location destination)
