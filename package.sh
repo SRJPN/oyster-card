@@ -1,1 +1,1 @@
-zip -r oyster_card.zip OysterCard oyster-card.sln OysterCard.Test Readme.md inputs -x "*/bin/*" -x "*obj*" -x "OysterCard.Test/coveragereport/*" -x "OysterCard.Test/TestResults/*"
+zip -r oyster_card.zip OysterCard oyster-card.sln OysterCard.Test Readme.md inputs global.json -x "*/bin/*" -x "*obj*" -x "OysterCard.Test/coveragereport/*" -x "OysterCard.Test/TestResults/*"
