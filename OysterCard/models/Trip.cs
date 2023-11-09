@@ -4,10 +4,10 @@ public class Trip
 {
     private Location? destination;
 
-    public TransportMode TransportMode { get; }
+    public ITransportMode TransportMode { get; }
 
     private readonly Location origin;
-    public Trip(TransportMode transportMode, Location origin)
+    public Trip(ITransportMode transportMode, Location origin)
     {
         TransportMode = transportMode;
         this.origin = origin;
@@ -20,8 +20,6 @@ public class Trip
 
     public decimal CalculateFare()
     {
-        if (TransportMode == TransportMode.BUS)
-            return Constants.BUS_FARE;
-        return origin.CalculateFare(destination);
+        return TransportMode.CalculateFare(origin, destination);
     }
 }

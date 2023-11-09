@@ -6,9 +6,14 @@ namespace MyMoney.extensions
     [ExcludeFromCodeCoverage]
     public static class StringExtension
     {
-        public static TransportMode ToTransportMode(this string value)
+        public static ITransportMode ToTransportMode(this string value)
         {
-            return Enum.TryParse(value, true, out TransportMode result) ? result : throw new Exception("Invalid Transportion mode");
+            if (value == "TUBE")
+                return new TubeTransportMode();
+            else if (value == "BUS")
+                return new BusTransportMode();
+            else
+                throw new Exception("Invalid mode of transport");
         }
     }
 }

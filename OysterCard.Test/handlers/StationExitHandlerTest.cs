@@ -28,7 +28,7 @@ public class StationExitHandlerTest
     [Fact]
     public void Execute_should_end_a_trip_with_given_location()
     {
-        card.StartTrip(TransportMode.TUBE, new Location("Hammersmith", Zone.TWO));
+        card.StartTrip(new TubeTransportMode(), new Location("Hammersmith", Zone.TWO));
         handler.Execute(card, "Hammersmith");
         Assert.Equal((decimal)28.0, card.GetBalance());
     }

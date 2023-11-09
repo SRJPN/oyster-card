@@ -11,17 +11,11 @@ public class Location
         new("Wimbledon", Zone.THREE),
     };
     public string Name { get; }
-    private readonly Zone zone;
+    public Zone Zone { get; }
+
     public Location(string name, Zone zone)
     {
         Name = name;
-        this.zone = zone;
-    }
-
-    public decimal CalculateFare(Location? destination)
-    {
-        if (destination == null)
-            return Constants.MAX_FARE;
-        return zone.CalculateFare(destination.zone);
+        Zone = zone;
     }
 }

@@ -35,7 +35,7 @@ namespace OysterCard.Test.models
             var card = new Card(wallet);
             Assert.Equal((decimal)30.0, card.GetBalance());
 
-            card.StartTrip(TransportMode.TUBE, new Location("some-location", Zone.ONE));
+            card.StartTrip(new TubeTransportMode(), new Location("some-location", Zone.ONE));
 
             Assert.Equal((decimal)26.8, card.GetBalance());
         }
@@ -49,7 +49,7 @@ namespace OysterCard.Test.models
             var card = new Card(wallet);
             Assert.Equal((decimal)30.0, card.GetBalance());
 
-            card.StartTrip(TransportMode.BUS, new Location("some-location", Zone.ONE));
+            card.StartTrip(new BusTransportMode(), new Location("some-location", Zone.ONE));
 
             Assert.Equal((decimal)28.2, card.GetBalance());
         }
@@ -63,7 +63,7 @@ namespace OysterCard.Test.models
             var card = new Card(wallet);
             Assert.Equal((decimal)30.0, card.GetBalance());
 
-            card.StartTrip(TransportMode.TUBE, new Location("some-location", Zone.ONE));
+            card.StartTrip(new TubeTransportMode(), new Location("some-location", Zone.ONE));
             card.EndLastTrip(new Location("some-destination-location", Zone.ONE));
 
             Assert.Equal((decimal)27.5, card.GetBalance());
@@ -78,7 +78,7 @@ namespace OysterCard.Test.models
             var card = new Card(wallet);
             Assert.Equal((decimal)30.0, card.GetBalance());
 
-            card.StartTrip(TransportMode.BUS, new Location("some-location", Zone.ONE));
+            card.StartTrip(new BusTransportMode(), new Location("some-location", Zone.ONE));
             card.EndLastTrip(new Location("some-destination-location", Zone.ONE));
 
             Assert.Equal((decimal)28.2, card.GetBalance());
