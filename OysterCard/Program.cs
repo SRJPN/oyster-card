@@ -35,7 +35,8 @@ namespace OysterCard
 
                 response.ForEach(Console.WriteLine);
             }
-            catch(Exception e) {
+            catch (Exception e)
+            {
                 Console.WriteLine(e.Message);
             }
         }
