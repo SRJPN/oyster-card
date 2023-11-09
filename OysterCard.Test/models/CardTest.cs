@@ -41,6 +41,20 @@ namespace OysterCard.Test.models
         }
 
         [Fact]
+        public void StartTrip_should_deduct_wallet_by_BUS_FARE_for_BUS_transport()
+        {
+            var wallet = new Wallet();
+            wallet.Recharge(30);
+
+            var card = new Card(wallet);
+            Assert.Equal((decimal)30.0, card.GetBalance());
+
+            card.StartTrip(TransportMode.BUS, new Location("some-location", Zone.ONE));
+
+            Assert.Equal((decimal)28.2, card.GetBalance());
+        }
+
+        [Fact]
         public void EndLastTrip_should_end_last_trip_and_update_wallet_with_fare()
         {
             var wallet = new Wallet();
@@ -53,6 +67,21 @@ namespace OysterCard.Test.models
             card.EndLastTrip(new Location("some-destination-location", Zone.ONE));
 
             Assert.Equal((decimal)27.5, card.GetBalance());
+        }
+
+        [Fact]
+        public void EndLastTrip_should_end_last_trip_and_ignore_wallet_for_bus_transport()
+        {
+            var wallet = new Wallet();
+            wallet.Recharge(30);
+
+            var card = new Card(wallet);
+            Assert.Equal((decimal)30.0, card.GetBalance());
+
+            card.StartTrip(TransportMode.BUS, new Location("some-location", Zone.ONE));
+            card.EndLastTrip(new Location("some-destination-location", Zone.ONE));
+
+            Assert.Equal((decimal)28.2, card.GetBalance());
         }
     }
 }

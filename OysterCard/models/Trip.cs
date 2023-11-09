@@ -3,11 +3,13 @@ namespace OysterCard.models;
 public class Trip
 {
     private Location? destination;
-    private readonly TransportMode transportMode;
+
+    public TransportMode TransportMode { get; }
+
     private readonly Location origin;
     public Trip(TransportMode transportMode, Location origin)
     {
-        this.transportMode = transportMode;
+        TransportMode = transportMode;
         this.origin = origin;
     }
 
@@ -18,7 +20,7 @@ public class Trip
 
     public decimal CalculateFare()
     {
-        if (transportMode == TransportMode.BUS)
+        if (TransportMode == TransportMode.BUS)
             return Constants.BUS_FARE;
         return origin.CalculateFare(destination);
     }

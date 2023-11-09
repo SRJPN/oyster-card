@@ -1,4 +1,5 @@
 
+
 namespace OysterCard.models;
 
 public class Card
@@ -13,16 +14,28 @@ public class Card
 
     public void StartTrip(TransportMode transportMode, Location location)
     {
-        wallet.UseWallet(Constants.MAX_FARE);
+        if (IsBus(transportMode))
+            wallet.UseWallet(Constants.BUS_FARE);
+        else
+            wallet.UseWallet(Constants.MAX_FARE);
+
         trips.Add(new Trip(transportMode, location));
+    }
+
+    private bool IsBus(TransportMode transportMode)
+    {
+        return transportMode == TransportMode.BUS;
     }
 
     public void EndLastTrip(Location destination)
     {
         var lastTrip = trips.Last();
         lastTrip.SetDestination(destination);
-        wallet.Recharge(Constants.MAX_FARE);
-        wallet.UseWallet(lastTrip.CalculateFare());
+        if (!IsBus(lastTrip.TransportMode))
+        {
+            wallet.Recharge(Constants.MAX_FARE);
+            wallet.UseWallet(lastTrip.CalculateFare());
+        }
     }
 
     public void Recharge(decimal amount)
