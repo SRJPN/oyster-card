@@ -55,10 +55,10 @@ namespace OysterCard.Test.models
         }
 
         [Fact]
-        public void CalculateFare_should_return_lowest_fare_if_location_in_multiple_zones()
+        public void CalculateFare_should_return_higher_fare_if_location_in_multiple_zones()
         {
             var location_in_multiple_zone = new Location("location_in_multiple_zone", Zone.ONE, Zone.TWO);
-            Assert.Equal(Constants.INTRA_ZONE_FARE_WITHIN_ZONE_ONE, transportMode.CalculateFare(zone_one_location, location_in_multiple_zone));
+            Assert.Equal(Constants.INTER_ZONE_FARE_THROUGH_ZONE_ONE, transportMode.CalculateFare(zone_one_location, location_in_multiple_zone));
         }
     }
 }

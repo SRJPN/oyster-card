@@ -76,7 +76,7 @@ public class CommandProcessorTest
         var response = CommandProcessor.ProcessCommands(commands);
 
         Assert.Single(response);
-        Assert.Equal("23.70", response.First());
+        Assert.Equal("22.20", response.First());
     }
 
     [Fact]
@@ -110,7 +110,7 @@ public class CommandProcessorTest
         var response = CommandProcessor.ProcessCommands(commands);
 
         Assert.Equal(2, response.Count);
-        Assert.Equal("27.50", response.First());
-        Assert.Equal("25.50", response.Last());
+        Assert.Equal("27.00", response.First());
+        Assert.Equal("24.00", response.Last());
     }
 }

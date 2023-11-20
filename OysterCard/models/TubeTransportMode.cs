@@ -14,7 +14,7 @@ public class TubeTransportMode : ITransportMode
                 fares.Add(CalculateFare(z1, z2));
             }
         }
-        return fares.Min();
+        return fares.Max();
     }
 
     private static decimal CalculateFare(Zone z1, Zone z2)
