@@ -79,7 +79,7 @@ namespace OysterCard.Test.models
             Assert.Equal((decimal)30.0, card.GetBalance());
 
             card.StartTrip(new BusTransportMode(), new Location("some-location", Zone.ONE));
-            card.EndLastTrip(new TubeTransportMode(), new Location("some-destination-location", Zone.ONE));
+            card.EndLastTrip(new BusTransportMode(), new Location("some-destination-location", Zone.ONE));
 
             Assert.Equal((decimal)28.2, card.GetBalance());
         }
@@ -112,6 +112,21 @@ namespace OysterCard.Test.models
             card.EndLastTrip(new TubeTransportMode(), new Location("some-destination-location", Zone.TWO));
 
             Assert.Equal((decimal)24.3, card.GetBalance());
+        }
+
+        [Fact]
+        public void EndLastTrip_charge_MAX_FARE_if_no_ongoing_trips_in_same_mode_of_transport()
+        {
+            var wallet = new Wallet();
+            wallet.Recharge(30);
+
+            var card = new Card(wallet);
+            Assert.Equal((decimal)30.0, card.GetBalance());
+            card.StartTrip(new BusTransportMode(), new Location("some-origin-location", Zone.ONE));
+
+            card.EndLastTrip(new TubeTransportMode(), new Location("some-destination-location", Zone.TWO));
+
+            Assert.Equal((decimal)25.0, card.GetBalance());
         }
     }
 }

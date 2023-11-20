@@ -31,4 +31,20 @@ public class TubeTransportMode : ITransportMode
                 return Constants.INTER_ZONE_FARE_OUTSIDE_ZONE_ONE;
         return Constants.INTER_ZONE_FARE_MORE_THAN_TWO_ZONES;
     }
+
+    // override object.Equals
+    public override bool Equals(object obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+        
+        return obj is TubeTransportMode;
+    }
+
+    public override int GetHashCode()
+    {
+        return 1;
+    }
 }

@@ -23,7 +23,7 @@ public class Card
     public void EndLastTrip(ITransportMode transportMode, Location destination)
     {
         var lastTrip = trips.LastOrDefault();
-        if (lastTrip is null || !lastTrip.IsOnGoing())
+        if (lastTrip is null || !lastTrip.IsOnGoing() || !lastTrip.TransportMode.Equals(transportMode))
         {
             lastTrip = StartTrip(transportMode);
         }
