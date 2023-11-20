@@ -27,5 +27,21 @@ namespace OysterCard.Test.models
 
             Assert.Equal((decimal)2.50, trip.CalculateFare());
         }
+
+        [Fact]
+        public void Ctor_should_initialise_without_location()
+        {
+            var trip = new Trip(new TubeTransportMode());
+
+            Assert.NotNull(trip);
+        }
+
+        [Fact]
+        public void IsOnGoing_should_return_true_for_destination_null()
+        {
+            var trip = new Trip(new TubeTransportMode());
+
+            Assert.True(trip.IsOnGoing());
+        }
     }
 }

@@ -2,5 +2,5 @@ namespace OysterCard.models;
 
 public interface ITransportMode
 {
-    public decimal CalculateFare(Location source, Location? destination);
+    public decimal CalculateFare(Location? source, Location? destination);
 }

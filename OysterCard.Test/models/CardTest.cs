@@ -64,7 +64,7 @@ namespace OysterCard.Test.models
             Assert.Equal((decimal)30.0, card.GetBalance());
 
             card.StartTrip(new TubeTransportMode(), new Location("some-location", Zone.ONE));
-            card.EndLastTrip(new Location("some-destination-location", Zone.ONE));
+            card.EndLastTrip(new TubeTransportMode(), new Location("some-destination-location", Zone.ONE));
 
             Assert.Equal((decimal)27.5, card.GetBalance());
         }
@@ -79,9 +79,39 @@ namespace OysterCard.Test.models
             Assert.Equal((decimal)30.0, card.GetBalance());
 
             card.StartTrip(new BusTransportMode(), new Location("some-location", Zone.ONE));
-            card.EndLastTrip(new Location("some-destination-location", Zone.ONE));
+            card.EndLastTrip(new TubeTransportMode(), new Location("some-destination-location", Zone.ONE));
 
             Assert.Equal((decimal)28.2, card.GetBalance());
+        }
+
+        [Fact]
+        public void EndLastTrip_charge_MAX_FARE_if_no_trips()
+        {
+            var wallet = new Wallet();
+            wallet.Recharge(30);
+
+            var card = new Card(wallet);
+            Assert.Equal((decimal)30.0, card.GetBalance());
+
+            card.EndLastTrip(new TubeTransportMode(), new Location("some-destination-location", Zone.ONE));
+
+            Assert.Equal((decimal)26.8, card.GetBalance());
+        }
+
+        [Fact]
+        public void EndLastTrip_charge_MAX_FARE_if_no_ongoing_trips()
+        {
+            var wallet = new Wallet();
+            wallet.Recharge(30);
+
+            var card = new Card(wallet);
+            Assert.Equal((decimal)30.0, card.GetBalance());
+            card.StartTrip(new TubeTransportMode(), new Location("some-destination-location", Zone.ONE));
+            card.EndLastTrip(new TubeTransportMode(), new Location("some-destination-location", Zone.ONE));
+
+            card.EndLastTrip(new TubeTransportMode(), new Location("some-destination-location", Zone.TWO));
+
+            Assert.Equal((decimal)24.3, card.GetBalance());
         }
     }
 }

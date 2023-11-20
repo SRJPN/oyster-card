@@ -60,5 +60,11 @@ namespace OysterCard.Test.models
             var location_in_multiple_zone = new Location("location_in_multiple_zone", Zone.ONE, Zone.TWO);
             Assert.Equal(Constants.INTER_ZONE_FARE_THROUGH_ZONE_ONE, transportMode.CalculateFare(zone_one_location, location_in_multiple_zone));
         }
+
+        [Fact]
+        public void CalculateFare_return_MAXFARE_if_source_location_is_null()
+        {
+            Assert.Equal(Constants.MAX_FARE, transportMode.CalculateFare(null, zone_one_location));
+        }
     }
 }

@@ -9,7 +9,8 @@ public class CommandProcessorTest
             "RETRIEVE 30"
         };
 
-        var exception = Assert.Throws<Exception>(() => {
+        var exception = Assert.Throws<Exception>(() =>
+        {
             CommandProcessor.ProcessCommands(commands);
         });
 
@@ -23,7 +24,8 @@ public class CommandProcessorTest
             "ENTRY TUBE Richmond"
         };
 
-        var exception = Assert.Throws<Exception>(() => {
+        var exception = Assert.Throws<Exception>(() =>
+        {
             CommandProcessor.ProcessCommands(commands);
         });
 
@@ -34,10 +36,12 @@ public class CommandProcessorTest
     public void TestCase_should_raise_exception_for_insufficient_amount_in_wallet()
     {
         var commands = new List<string>() {
-            "ENTRY TUBE Holborn"
+            "RECHARGE 1.00",
+            "ENTRY BUS Holborn"
         };
 
-        var exception = Assert.Throws<Exception>(() => {
+        var exception = Assert.Throws<Exception>(() =>
+        {
             CommandProcessor.ProcessCommands(commands);
         });
 
@@ -50,7 +54,7 @@ public class CommandProcessorTest
         var commands = new List<string>() {
             "RECHARGE 30",
             "ENTRY TUBE Holborn",
-            "EXIT Aldgate",
+            "EXIT TUBE Aldgate",
             "BALANCE"
         };
 
@@ -66,10 +70,10 @@ public class CommandProcessorTest
         var commands = new List<string>() {
             "RECHARGE 30",
             "ENTRY TUBE Holborn",
-            "EXIT EarlsCourt",
+            "EXIT TUBE EarlsCourt",
             "ENTRY BUS EarlsCourt",
             "ENTRY TUBE EarlsCourt",
-            "EXIT Hammersmith",
+            "EXIT TUBE Hammersmith",
             "BALANCE"
         };
 
@@ -100,10 +104,10 @@ public class CommandProcessorTest
         var commands = new List<string>() {
             "RECHARGE 30",
             "ENTRY TUBE Holborn",
-            "EXIT EarlsCourt",
+            "EXIT TUBE EarlsCourt",
             "BALANCE",
             "ENTRY TUBE EarlsCourt",
-            "EXIT Hammersmith",
+            "EXIT TUBE Hammersmith",
             "BALANCE"
         };
 

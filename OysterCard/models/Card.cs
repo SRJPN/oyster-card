@@ -12,16 +12,21 @@ public class Card
         this.wallet = wallet;
     }
 
-    public void StartTrip(ITransportMode transportMode, Location location)
+    public Trip StartTrip(ITransportMode transportMode, Location? location = null)
     {
         var trip = new Trip(transportMode, location);
         wallet.UseWallet(trip.CalculateFare());
         trips.Add(trip);
+        return trip;
     }
 
-    public void EndLastTrip(Location destination)
+    public void EndLastTrip(ITransportMode transportMode, Location destination)
     {
-        var lastTrip = trips.Last();
+        var lastTrip = trips.LastOrDefault();
+        if (lastTrip is null || !lastTrip.IsOnGoing())
+        {
+            lastTrip = StartTrip(transportMode);
+        }
         wallet.Recharge(lastTrip.CalculateFare());
         lastTrip.SetDestination(destination);
         wallet.UseWallet(lastTrip.CalculateFare());

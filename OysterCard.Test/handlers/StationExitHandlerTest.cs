@@ -29,7 +29,14 @@ public class StationExitHandlerTest
     public void Execute_should_end_a_trip_with_given_location()
     {
         card.StartTrip(new TubeTransportMode(), new Location("Hammersmith", Zone.TWO));
-        handler.Execute(card, "Hammersmith");
+        handler.Execute(card, "TUBE", "Hammersmith");
         Assert.Equal((decimal)28.0, card.GetBalance());
+    }
+
+    [Fact]
+    public void Execute_should_charge_MAX_FARE_if_no_trip_is_present()
+    {
+        handler.Execute(card, "TUBE", "Hammersmith");
+        Assert.Equal((decimal)26.8, card.GetBalance());
     }
 }

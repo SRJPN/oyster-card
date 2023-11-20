@@ -2,9 +2,9 @@ namespace OysterCard.models;
 
 public class TubeTransportMode : ITransportMode
 {
-    public decimal CalculateFare(Location source, Location? destination = null)
+    public decimal CalculateFare(Location? source = null, Location? destination = null)
     {
-        if (destination == null)
+        if (destination is null || source is null)
             return Constants.MAX_FARE;
         var fares = new List<decimal>();
         foreach (var z1 in source.Zones)
